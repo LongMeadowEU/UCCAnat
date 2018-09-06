@@ -1,0 +1,114 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#pageBdy {
+	background-color:#7EC2AA;
+	background-image:url(../images/background_hospital_final.png);
+	background-repeat: no-repeat;
+	background-size: 100% 90%;
+	background-position: top;
+	font-family: 'Lato', sans-serif;
+}
+ul {
+	list-style-type: none;
+}
+#logoImage {
+	width: 100px;
+	height: 100px;
+	margin-left:auto;
+	margin-right:auto;
+	display: block;
+}
+#logoDiv {
+	margin-left:auto;
+	margin-right:auto;
+}
+#headingRegister {
+	position: relative;
+	margin-top: 20px;
+	text-align:center;
+}
+#reg_head {
+	font-family: 'Lato', sans-serif;
+	letter-spacing: 3px;
+	text-shadow: 2px 2px #A92159;
+	font-size: 3em;
+	vertical-align:middle;
+	color:#FFF;
+}
+#reg_form_div {
+
+	
+}
+.reg_input_box{
+	padding: 10px;
+	width: 278px;
+
+}
+#register_form {
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#regEmail {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-signin input[type="text"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+#alreadyregistered {
+	position: relative;
+	margin-top: 20px;
+	text-align:center;
+	color: #A92159;
+}
+#alreadyregistered a {
+	color: #FFF;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}

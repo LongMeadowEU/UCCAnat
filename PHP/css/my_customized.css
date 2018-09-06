@@ -1,0 +1,450 @@
+@charset "UTF-8";
+/* CSS Document */
+.container_homepage {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 0;
+    height: 400px;
+    text-align: center;
+}
+.centred_text {
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
+}
+.text_left {
+	margin-left:none;
+	margin-right:none;
+	text-align: left;
+}
+#centred_search_box {
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  margin-left: -170px;
+}
+#homepage_search_box {
+	padding-top: 3%;
+	width: 30%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#navBarLogo {
+	height: 100%;
+	display:inline;
+}
+#regBody {
+	background-color:#f8f8f8;
+}
+.colorgraph {
+	  height: 5px;
+	  border-top: 0;
+	  background: #c4e17f;
+	  border-radius: 5px;
+	  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+	  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+#loginPanel {
+	background-color:#f8f8f8;
+	border: none;
+}
+/* image_ani buttons and Animation */
+.image_ani {
+  width: 80%;
+  height: auto;
+  z-index: -1; 
+
+  -webkit-transition: all 1.5s; /* For Safari 3.1 to 6.0 */
+  -moz-transition: all 1.5s;
+  -o-transition: all 1.5s;
+  transition: all 1.5s;
+
+  -webkit-animation: introPop 2s;
+  animation: introPop 2s;
+}
+
+@-webkit-keyframes introPop {
+    0%   {width: 0px; visibility: hidden;}
+    100% {width: 80%; visibility: visible;}
+}
+
+@keyframes introPop {
+    0%   {width: 0px; visibility: hidden;}
+    100% {width: 80%; visibility: visible;}
+}
+
+.image_ani:hover {
+  width: 84%;
+  margin-left: -7px;
+}
+
+/* image_ani buttons and Animation */
+.image_ani_dash {
+  width: 60%;
+  height: auto;
+  z-index: -1;
+
+  -webkit-transition: all 1.5s; /* For Safari 3.1 to 6.0 */
+  -moz-transition: all 1.5s;
+  -o-transition: all 1.5s;
+  transition: all 1.5s;
+
+  -webkit-animation: introPop2 2s;
+  animation: introPop2 2s;
+}
+
+@-webkit-keyframes introPop2 {
+    0%   {width: 0px; visibility: hidden;}
+    100% {width: 60%; visibility: visible;}
+}
+
+@keyframes introPop2 {
+    0%   {width: 0px; visibility: hidden;}
+    100% {width: 60%; visibility: visible;}
+}
+
+.image_ani_dash:hover {
+  width: 66%;
+  margin-left: -7px;
+}
+
+.addPatBreadcrumb {
+	width: 5%;
+	height: auto;
+	z-index: -1;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+.arrowBreadCrumb {
+	width: 3%;
+	height: auto;
+	z-index: -1;
+}
+.add_patient_table {
+	margin-top: 4%;
+}
+/*#page-wrapper {	
+	background-image: url(../images/ps_neutral_@2X.png);
+}*/
+#mainTableRow {
+	width: 100%;
+	margin-left: auto;
+	margin-right:auto;
+}
+.columnLeftAndRight {
+	width: 30%;
+}
+#genInfoFormTable {
+	width: 70%;
+}
+#consent_part_3_table {
+	width: 70%;
+}
+#prosec_table_3rows {
+	width: 70%;
+}
+#burial_additional_info {
+	width: 70%;
+}
+#genInfoFormTable_1_1 {
+	width: 80%;
+}
+#witness1table {
+	width: 70%;
+	margin-top: 2%;
+}
+#undertakertable {
+	width: 80%;
+	margin-top: 2%;
+}
+#doctortable {
+	width: 80%;
+	margin-top: 2%;
+}
+#prosections_table {
+	width: 80%;
+	margin-top: 2%;
+}
+#cremation_or_burial_table {
+	width: 70%;
+	margin-top: 4%;
+}
+#private_interment_selected {
+	width: 70%;
+}
+#private_interment_selected_1 {
+	width: 70%;
+}
+#undertakertable td {
+	border-bottom: 1px solid #ddd;
+}
+#doctortable td {
+	border-bottom: 1px solid #ddd;
+}
+#prosections_table td {
+	border-bottom: 1px solid #ddd;
+}
+#prosections_Row {
+	background-color: rgba(26,179,148, 0.6);
+}
+#next_of_kintable {
+	width: 80%;
+	margin-top: 2%;
+}
+#next_of_kintable td {
+	border-bottom: 1px solid #ddd;
+}
+#witness1Row {
+	background-color: rgba(26,179,148, 0.6);
+}
+#next_of_kinRow {
+	background-color: rgba(26,179,148, 0.6);
+}
+#undertakertable td {
+	border-bottom: 1px solid #ddd;
+}
+#undertakerRow {
+	background-color: rgba(26,179,148, 0.6);
+}
+#acceptancetable {
+	width: 80%;
+	margin-top: 2%;
+	color: #fff;
+}
+#acceptancetable td {
+	border-bottom: 1px solid #ddd;
+}
+#acceptanceRow {
+	background-color: rgba(130, 40, 153, 0.6);
+}
+#doctortable td {
+	border-bottom: 1px solid #ddd;
+}
+#doctorRow {
+	background-color: rgba(26,179,148, 0.6);
+}
+#witness2Row {
+	background-color: rgba(26,179,148, 0.6);
+}
+#witness2table {
+	width: 70%;
+	margin-top: 2%;
+}
+#witness2table td {
+	border-bottom: 1px solid #ddd;
+}
+#notesTable {
+	width: 70%;
+}
+#notesTable1 {
+	width: 70%;
+}
+#parity {
+	width: 40%;
+	margin-left: auto;
+	margin-right:auto;
+}
+.formLabel {
+	width: 15%;
+	padding:10px;
+}
+.formLabel_BMI {
+	width: 5%;
+	padding:10px;
+}
+.formInput {
+	width: 15%;
+	padding:10px;
+}
+.formInputConsent {
+	width: 50%;
+	padding:10px;
+}
+.formIndent {
+	padding-left: 40px;
+}
+#medicalInfoTable1 {
+	width: 80%;
+}
+#medicalInfoTable_part2 {
+	width: 80%;
+}
+#medicalInfoTable2 {
+	width: 80%;
+}
+#hyst_type_if_yes {
+	width: 80%;
+}
+#hyst_type_if_yes1 {
+	width: 80%;
+}
+#parityTable {
+	width: 80%;
+}
+#examinationTable {
+	width: 80%;
+}
+#examinationTable1 {
+	width: 80%;
+}
+.form_1_button {
+	width: 220px;
+}
+.form_2_button {
+	width: 300px;
+}
+#formLabel1 {
+	width: 30%;
+	padding:10px;
+}
+.formInput1 {
+	width: 17%;
+	padding:10px;
+}
+.hyst_type_bt {
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+.buttons_table {
+	width: 80%;
+	margin-top: 4%;
+	margin-left: auto;
+	margin-right:auto;
+}
+.buttons_table_row {
+	width: 100%;
+}
+.buttons_table_cell {
+	width: 33%;
+}
+.buttons_table_2_cell {
+	width: 50%;
+}
+.intraop_text_area {
+	resize:none;
+	height: 68px;
+    overflow: auto;
+    margin-bottom: 30px;
+}
+.one_third {
+	width: 33%;
+}
+.history_button {
+	width: 200px;
+}
+#btn_left {
+	margin-right: 10%;
+}
+#btn_right {
+	margin-left: 10%;
+}
+.techniqueBtn {
+	width: 33%;
+	height: 100px;
+	line-height: 100px;
+	box-sizing: border-box;
+	text-align: center;
+}
+.technique_div {
+	width: 100%;
+}
+.peri_postop_form {
+	margin-bottom: 50px;
+}
+#complication_if_yes {
+	width: 100%;
+}
+.postop_day_num {
+	width: 30%;
+}
+.postop_desc {
+	width: 70%;
+}
+#postop_comp_header {
+	font-weight: bold;
+}
+#add_delete_buttons {
+	width: 100%;
+}
+.add_delete_btns {
+	width: 50%;
+}
+.form_button_history {
+	width: 100%;
+}
+.buttons_table_cell1 {
+	width: 33%;
+	padding: 2%;
+}
+.block_div {
+	display: block;
+}
+#logout_image {
+	width: 40%;
+	height: 40%;
+	display: block;
+}
+.save_cancel_btn {
+	width: 100%;
+}
+.save_cancel_cell {
+	width: 30%;
+}
+.space_cell {
+	width: 40%;
+}
+#save_cancel_table {
+	width: 75%;
+}
+.formLabelNew {
+	width: 15%;
+	padding:10px;
+	padding-left: 40px;
+}
+.pisq_form_div {
+	margin-bottom: 10px;
+}
+#search_to_get_statistics {
+	width:80%;
+}
+#add_delete_buttons_stats {
+	width: 80%;
+}
+.search_box1 {
+	width:35%;
+}
+.search_box2 {
+	width:10%;
+}
+.stats_table_row {
+		width: 100%;
+}
+#stats_table_calculations {
+	width: 100%;
+}
+.stats_row {
+	width: 100%;
+}
+.one_third_of_row {
+	width:33%;
+}
+.table_questionnaire {
+	width: 95%;
+	margin-top: 4%;
+	margin-left: auto;
+	margin-right:auto;
+}
+.input_questionnaire {
+	width: 40%;
+	padding: 2%;
+}
+.followup_btn {
+	width: 80%;
+}
+.formInputConsent3 {
+	width: 50%;
+	padding:10px;
+}
