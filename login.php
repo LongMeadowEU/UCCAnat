@@ -3,6 +3,9 @@
 <html lang="en">
 
 <head>
+	  </head>
+
+  <body>
  	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,9 +34,7 @@
 	}
 	</style>
  
-  </head>
 
-  <body>
  <nav>
  	<a id="main_homepage_link" class="navbar-brand" href="anatomy_homepage.php">UCC Anatomy</a>
  </nav>

@@ -140,7 +140,7 @@ if (empty($errors) === false) {
     
   </body>
 </html>
-<?	
+<?php	
 	
 }
 

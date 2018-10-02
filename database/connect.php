@@ -4,8 +4,8 @@
 	// start the session
 	//session_start();
 
-	$db_connect = mysql_connect('cs1.ucc.ie', 'reoc1', 'ohleengi') or die($connect_error);
-	mysql_select_db('mscim2015_reoc1') or die($connect_error);
+	$db_connect = mysqli_connect('localhost', 'reoc1', 'ohleengi') or die($connect_error);
+	mysqli_select_db($db_connect,'mscim2015_reoc1') or die($connect_error);
 
 
 ?>
