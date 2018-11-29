@@ -81,10 +81,15 @@ function mysqli_result($res,$row=0,$col=0){
 }
 
 
-	function user_exists($username) {
+	function user_exists($cnx,$username) {
 		
-		// if user id = 0 then the user does not exist so no point going further to check the password against a non-existent username. So check. 
-		return (mysql_result(mysql_query("SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username'"), 0) == 1) ? true : false;
+	//TODO MOK This is a double search in DB for existance and then repeated 
+            $findUser ="SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username'";
+            $userResult = mysqli_query($cnx, $findUser) 
+                or die("Connect Connect to DB - userExists");
+            return $userResult;
+            // if user id = 0 then the user does not exist so no point going further to check the password against a non-existent username. So check. 
+	    // return (mysql_result(mysqli_query("SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username'"), 0) == 1) ? true : false;
 	}
 	
 	// this is for the email address. Currently the username is the users email. Maybe I should change this.

@@ -7,7 +7,7 @@ include_once 'init.php';
 		
 		if(empty($username) === true || empty($password) === true) {
 			$errors[] = 'You need to enter a username and password';
-		} else if(user_exists($username) === false) {
+		} else if(user_exists($db_connect,$username) === false) {
 			$errors[] = 'We can\'t find that username. have you registered?';
 		} else if(user_active($username) === false) {
 			// if the user is not active append another element onto the errors array
