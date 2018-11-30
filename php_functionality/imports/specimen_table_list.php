@@ -1,11 +1,11 @@
 <?php 
 	include_once 'init.php';
 	
-	$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
-	
-	$result = mysql_query("SELECT * FROM import_specimens") or die($connect_error1);
+	$connect_speclist = 'Failed to connect to data base - specimenslist';
+	$specimensQ = "SELECT * FROM import_specimens";
+	$result = mysqli_query($db_connect,$specimensQ) or die($connect_speclist);
 												
-	while($row = mysql_fetch_assoc($result)) {
+	while($row = mysqli_fetch_assoc($result)) {
 		
 			$date_of_delivery = $row['specimen_delivery_date'];
 			$formatted_specimen_delivery_date = date('d-m-Y', strtotime($date_of_delivery));
@@ -40,5 +40,4 @@
 			echo '<td>' . 	$imports_rem_text 	. '</td>';
 		echo '</tr>';
 	}
-?>
 

@@ -9,12 +9,12 @@ include_once 'init.php';
 			$errors[] = 'You need to enter a username and password';
 		} else if(user_exists($db_connect,$username) === false) {
 			$errors[] = 'We can\'t find that username. have you registered?';
-		} else if(user_active($username) === false) {
+		} else if(user_active($db_connect,$username) === false) {
 			// if the user is not active append another element onto the errors array
 			$errors[] = 'You have not activated your account yet';
 		} else {
 			// test the login process here. Check if username and password match, etc.
-			$login = login($username, $password);
+			$login = login($db_connect,$username, $password);
 			
 			if($login === false) {
 				$errors[] = 'That username/password combination is incorrect.';

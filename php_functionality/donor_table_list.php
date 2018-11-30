@@ -1,11 +1,11 @@
 <?php 
 	include_once 'init.php';
 	
-	$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
-	
-	$result = mysql_query("SELECT * FROM donor_table") or die($connect_error1);
+	$connectErrDonor = 'Error Connecting to Data Base - donorTable';
+        $donorTableQ = "SELECT * FROM donor_table";
+	$result = mysqli_query($db_connect,$donorTableQ) or die($connectErrDonor);
 												
-	while($record = mysql_fetch_assoc($result)) {
+	while($record = mysqli_fetch_assoc($result)) {
 		
 			// format the date to appear from database as day - month - year (DATABASE stores dates as Year - Month - Day)
 			$var1 = $record['date_of_birth'];
@@ -20,5 +20,5 @@
 			echo '<td>' . 	$record['religion'] 	. '</td>';
 			echo '</tr>'; 
 	}
-?>
+
 

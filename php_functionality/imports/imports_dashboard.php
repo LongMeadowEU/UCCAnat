@@ -1,18 +1,6 @@
 <?php
     
-    $login = $_SESSION['user_id_imports'];
-	$result = mysql_query("SELECT sur_name FROM anatomy_login WHERE user_id = $login") or die($connect_error1);
-	
-	while($record = mysql_fetch_assoc($result)) {
-		$drSurname = ucwords($record['sur_name']);
-	}	
-	
-	$result_1 = mysql_query("SELECT male_female FROM anatomy_login WHERE user_id = $login") or die($connect_error1);
-	
-	while($record_1 = mysql_fetch_assoc($result_1)) {
-		$male_female_record = $record_1['male_female'];
-	}	
-	
+
 	echo '
         <!-- Page Content -->
         <div id="page-wrapper">

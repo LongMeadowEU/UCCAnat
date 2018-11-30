@@ -1,8 +1,8 @@
 <?php
 
 	//a function to cleanup/ sanitize the data. passing in data and returning it in sanitized
-	function sanitize($data) {
-		return mysql_real_escape_string($data);
+	function sanitize($cxn, $data) {
+		return mysqli_real_escape_string ( $cxn, $data);
 	}
 	
 	function output_errors($errors) {
@@ -26,5 +26,3 @@
 	function email($to, $subject, $body) {
 		mail($to, $subject, $body, 'From: parsec@hotmail.com');
 	}
-
-?>

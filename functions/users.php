@@ -20,11 +20,12 @@
 		");
 	}
 	
-	function user_data($user_id) {
+	function getUserDetail($user_id) {
 		$data = array();
 		
 		// create an integer from that input. can't pass any sql injection strings into our query later. Sanitize it!
-		$user_id = (int)$user_id;
+		$userIdAsInt = (int)$user_id;
+                $userDataQ = "SELECT `user_id`, `username`, `password`, `first_name`, `sur_name`, `active` FROM `anatomy_login` WHERE `user_id` = '$$userIdAsInt' ";
 		
 		// count the number of arguments
 		$func_num_args = func_num_args();
@@ -38,7 +39,7 @@
 			// converting an array into a string. We can pass this string into a query
 			$fields = '`' . implode('`, `', $func_get_args) . '`';
 
-			$data = mysql_fetch_assoc(mysql_query("SELECT '$fields' FROM anatomy_login WHERE user_id = '$user_id'"));
+			$data = mysql_fetch_assoc(mysql_query("SELECT user_id,username,password', 'first_name', 'sur_name' FROM anatomy_login WHERE user_id = '$userIdAsInt'"));
 			
 			return $data;
 			
@@ -86,14 +87,14 @@ function mysqli_result($res,$row=0,$col=0){
 	//TODO MOK This is a double search in DB for existance and then repeated 
             $findUser ="SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username'";
             $userResult = mysqli_query($cnx, $findUser) 
-                or die("Connect Connect to DB - userExists");
+                or die("Cannot Connect to DB - userExists");
             return $userResult;
             // if user id = 0 then the user does not exist so no point going further to check the password against a non-existent username. So check. 
 	    // return (mysql_result(mysqli_query("SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username'"), 0) == 1) ? true : false;
 	}
 	
 	// this is for the email address. Currently the username is the users email. Maybe I should change this.
-	function email_exists($username) {
+	function email_exists($cnx,$username) {
 		
 		$username = sanitize($username);
 		
@@ -101,30 +102,32 @@ function mysqli_result($res,$row=0,$col=0){
 		return (mysql_result(mysql_query("SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username'"), 0) == 1) ? true : false;
 	}
 	
-	function user_active($username) {
+	function user_active($cnx,$username) {
 		
-		$username = sanitize($username);
-		
-		return (mysql_result(mysql_query("SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username' AND active = 1"), 0) == 1) ? true : false;
+		$usernameSan = sanitize($cnx,$username);
+                $userActive = "SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$usernameSan' AND active = 1";
+		$userActiveResult = mysqli_query($cnx, $userActive) 
+                        or die("Cannot Connect to DB - userActive");
+		return $userActiveResult;
 	}
 	
 	// function to get the user id from the username. Need this for the session.
-	function user_id_from_username($username) {
-		$username = sanitize($username);
-		
-		return mysql_result(mysql_query("SELECT user_id FROM anatomy_login WHERE username = '$username'"), 0, 'user_id');
+	function user_id_from_username($cnx,$username) {
+		$usernameSan = sanitize($cnx,$username);
+                $userIDq = "SELECT user_id FROM anatomy_login WHERE username = '$usernameSan'";
+                $userIDResult = mysqli_query($cnx, $userIDq) 
+                        or die("Cannot Connect to DB - userIDfromUsername");
+		return $userIDResult;
 	}
 	
-	function login($username, $password) {
-		// need to sanitize the username and encrypt the password
-		$user_id = user_id_from_username($username);
-		
-		$username = sanitize($username);
-		$password = md5($password);
-		
-		// return whether or not the username and password match was successful
-		// if the condition in return is true return the user_id otherwise return false
-		return(mysql_result(mysql_query("SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username' AND password = '$password'"), 0) == 1) ? $user_id : false;
+	function login($cnx, $username, $password) {
+		// need to sanitize the username and encrypt the password		
+		$usernameSan = sanitize($cnx,$username);
+		$passwordEncrypt = md5($password);
+                $loginQ = "SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$usernameSan' AND password = '$passwordEncrypt'";
+		$userIDResult = mysqli_query($cnx, $loginQ) 
+                        or die("Cannot Connect to DB - loginFailure");
+		return $userIDResult;
 		
 	}
 
@@ -276,5 +279,3 @@ function mysqli_result($res,$row=0,$col=0){
 		return (isset($_SESSION['selected_hist_piece_ref_number'])) ? true : false;
 
 	}
-	
-?>

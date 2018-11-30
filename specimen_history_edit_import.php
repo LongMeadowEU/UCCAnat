@@ -11,10 +11,11 @@ if(no_import_sepcimen_hist_selected() != true) {
 
 $selected_specimen_ref_hist = $_SESSION['selected_specimen_ref_hist'];
 
-    	$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
-		$result = mysql_query("SELECT * FROM import_specimens WHERE specimen_reference_number = $selected_specimen_ref_hist") or die($connect_error1);
+    	$connect_error1 = 'Cannot to connect to Database - specimens history';
+        $specHistoryQ = "SELECT * FROM import_specimens WHERE specimen_reference_number = $selected_specimen_ref_hist";
+	$result = mysqli_query($db_connect,$specHistoryQ) or die($connect_error1);
 					
-		while($record = mysql_fetch_assoc($result)) {
+		while($record = mysqli_fetch_assoc($result)) {
 				
 				$new_specimen_reference_number = $record['specimen_reference_number'];
 				$new_specimen_item_number = $record['specimen_item_number'];
@@ -56,17 +57,18 @@ $selected_specimen_ref_hist = $_SESSION['selected_specimen_ref_hist'];
 						$newest_imports_sex					=	$_POST['imports_sex'];					
 
 						// update the correct row for the new patient info added on page 1 of the form with the new changes
-						mysql_query("UPDATE import_specimens SET specimen_item_number = '$newest_specimen_item_number' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET specimen_user = '$newest_specimen_user' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET type_of_specimen = '$newest_type_of_specimen' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET specimen_delivery_date = '$newest_specimen_delivery_date' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET specimen_cremation_date = '$newest_specimen_cremation_date' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET specimen_serology = '$newest_specimen_serology' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET specimen_images = '$newest_specimen_images' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET specimen_imports_removed = '$newest_specimen_imports_removed' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET specimen_notes = '$newest_specimen_notes' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET imports_cause_of_death = '$newest_imports_cause_of_death' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
-						mysql_query("UPDATE import_specimens SET imports_sex = '$newest_imports_sex' WHERE specimen_reference_number = '$selected_specimen_ref_hist'");
+                                                $updateError = "Failed to update database - spechistupdate";
+						mysqli_query($db_connect,"UPDATE import_specimens SET specimen_item_number = '$newest_specimen_item_number' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET specimen_user = '$newest_specimen_user' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET type_of_specimen = '$newest_type_of_specimen' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET specimen_delivery_date = '$newest_specimen_delivery_date' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET specimen_cremation_date = '$newest_specimen_cremation_date' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET specimen_serology = '$newest_specimen_serology' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET specimen_images = '$newest_specimen_images' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET specimen_imports_removed = '$newest_specimen_imports_removed' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET specimen_notes = '$newest_specimen_notes' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET imports_cause_of_death = '$newest_imports_cause_of_death' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
+						mysqli_query($db_connect,"UPDATE import_specimens SET imports_sex = '$newest_imports_sex' WHERE specimen_reference_number = '$selected_specimen_ref_hist'") or die($updateError);
 
 						header("Location: specimen_history_edit_import.php");
 			} 
