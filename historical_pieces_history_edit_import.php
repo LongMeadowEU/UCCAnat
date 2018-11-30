@@ -11,10 +11,11 @@ if(no_hist_piece_sepcimen_hist_selected() != true) {
 $selected_hist_piece_ref_number = $_SESSION['selected_hist_piece_ref_number'];
 echo $selected_hist_piece_ref_number;
 
-    	$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
-		$result = mysql_query("SELECT * FROM historical_pieces_table WHERE donor_reference_num_hist_pieces = $selected_hist_piece_ref_number") or die($connect_error1);
+    	$connect_error1 = 'Database connection error - histPieceEdit';
+        $histRefEdit = "SELECT * FROM historical_pieces_table WHERE donor_reference_num_hist_pieces = $selected_hist_piece_ref_number";
+		$result = mysqli_query($db_connect,$histRefEdit) or die($connect_error1);
 					
-		while($record = mysql_fetch_assoc($result)) {
+		while($record = mysqli_fetch_assoc($result)) {
 				
 				$new_ref_num = $record['donor_reference_num_hist_pieces'];
 				$new_type = $record['type_of_specimen'];
@@ -39,8 +40,8 @@ echo $selected_hist_piece_ref_number;
 							
 							$type_of_specimen = $_POST['type_of_specimen'];
 							$description = $_POST['description'];
-							
-							mysql_query("UPDATE historical_pieces_table SET type_of_specimen = '$type_of_specimen' WHERE donor_reference_num_hist_pieces = '$selected_hist_piece_ref_number'");
+							$specTypeQ = "UPDATE historical_pieces_table SET type_of_specimen = '$type_of_specimen' WHERE donor_reference_num_hist_pieces = '$selected_hist_piece_ref_number'";
+							mysqli_query($db_connect,$specTypeQ);
 							/*
 							mysql_query("UPDATE historical_pieces_table SET description = '$description' WHERE donor_reference_num_hist_pieces = '$selected_hist_piece_ref_number'");
 							mysql_query("UPDATE historical_pieces_table SET disposed_of_date = '$disposed_of_date' WHERE donor_reference_num_hist_pieces = '$selected_hist_piece_ref_number'");
