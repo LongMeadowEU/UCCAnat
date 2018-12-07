@@ -9,20 +9,20 @@ $connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
 	$show_form_new = true;
 	
 	if($radio == "subject_number") {
-		$which_subject_num_from_donor_table = mysql_query("SELECT * FROM donor_table WHERE subject_number LIKE '%$search%'") or die($connect_error1);
+		$which_subject_num_from_donor_table = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE subject_number LIKE '%$search%'") or die($connect_error1);
 		$which_radio = "subj_num";
 	} else if($radio == "prosection_type") {
-		$which_subject_num_from_donor_table = mysql_query("SELECT * FROM prosections_table WHERE prosection_types_list LIKE '%$search%'") or die($connect_error1);
+		$which_subject_num_from_donor_table = mysqli_query($db_connect,"SELECT * FROM prosections_table WHERE prosection_types_list LIKE '%$search%'") or die($connect_error1);
 		$which_radio = "prosec_type";
 	} else if($radio == "prosection_region") {
-		$which_subject_num_from_donor_table = mysql_query("SELECT * FROM prosections_table WHERE prosection_regions_list LIKE '%$search%'") or die($connect_error1);
+		$which_subject_num_from_donor_table = mysqli_query($db_connect,"SELECT * FROM prosections_table WHERE prosection_regions_list LIKE '%$search%'") or die($connect_error1);
 		$which_radio = "prosec_region";
 	} else if($radio == "prosection_specific_feature") {
-		$which_subject_num_from_donor_table = mysql_query("SELECT * FROM prosections_table WHERE prosection_features_list LIKE '%$search%'") or die($connect_error1);
+		$which_subject_num_from_donor_table = mysqli_query($db_connect,"SELECT * FROM prosections_table WHERE prosection_features_list LIKE '%$search%'") or die($connect_error1);
 		$which_radio = "prosec_specific_feature";
 	}
 	
-$number = mysql_num_rows($which_subject_num_from_donor_table);
+$number = mysqli_num_rows($which_subject_num_from_donor_table);
 
 // if the errors array is empty and the user has submitted the form then create the user and redirect the user
 		if(isset($_POST['view_subject_num_details'])) {
@@ -160,13 +160,13 @@ $number = mysql_num_rows($which_subject_num_from_donor_table);
 										 </span></h4>
 									</div><!-- /.panel-heading -->
 									<?php 
-										if(mysql_num_rows($which_subject_num_from_donor_table) != 0) {
+										if(mysqli_num_rows($which_subject_num_from_donor_table) != 0) {
 									?>
                                           <div class="panel-body">
                                               <div class="dataTable_wrapper">
                                                   <div class="table-responsive">
                                                   <?php
-                                                  if (mysql_num_rows($which_subject_num_from_donor_table) > 0) {
+                                                  if (mysqli_num_rows($which_subject_num_from_donor_table) > 0) {
                                                   ?>
                                                         <table class="table table-striped table-bordered table-hover sortable" id="prosection_results_table">
                                                        <?php 
@@ -180,13 +180,13 @@ $number = mysql_num_rows($which_subject_num_from_donor_table);
                                                             </thead>
                                                             <tbody>
                                                       <?php	
-													  while($record = mysql_fetch_assoc($which_subject_num_from_donor_table)) {
+													  while($record = mysqli_fetch_assoc($which_subject_num_from_donor_table)) {
 														  	  $selected_subject_number = $record['subject_number'];
-															  $does_subject_have_prosection = mysql_query("SELECT unique_id FROM prosections_table WHERE which_subject_number = '$selected_subject_number'") or die($connect_error1);
-															  if(mysql_num_rows($does_subject_have_prosection) == 0) {
+															  $does_subject_have_prosection = mysqli_query($db_connect,"SELECT unique_id FROM prosections_table WHERE which_subject_number = '$selected_subject_number'") or die($connect_error1);
+															  if(mysqli_num_rows($does_subject_have_prosection) == 0) {
 	$prosection_yes_no = "There are currently no prosections for this subject";
 } else {
-	$number_of_prosections = mysql_num_rows($does_subject_have_prosection);
+	$number_of_prosections = mysqli_num_rows($does_subject_have_prosection);
 	$prosection_yes_no = "This subject currently has " . $number_of_prosections . " prosections";
 }
 					  										echo '<tr>';
@@ -210,7 +210,7 @@ $number = mysql_num_rows($which_subject_num_from_donor_table);
                                                             </thead>
                                                             <tbody>
                                                       <?php	
-													  while($record_1 = mysql_fetch_assoc($which_subject_num_from_donor_table)) {
+													  while($record_1 = mysqli_fetch_assoc($which_subject_num_from_donor_table)) {
 														  
 														  	  $prosection_type = $record_1['prosection_type'];
 															  $which_subj = $record_1['which_subject_number'];
@@ -238,7 +238,7 @@ $number = mysql_num_rows($which_subject_num_from_donor_table);
                                                             </thead>
                                                             <tbody>
                                                       <?php	
-													  while($record_2 = mysql_fetch_assoc($which_subject_num_from_donor_table)) {
+													  while($record_2 = mysqli_fetch_assoc($which_subject_num_from_donor_table)) {
 														  
 														  	  $prosection_type = $record_2['prosection_type'];
 															  $which_subj = $record_2['which_subject_number'];
@@ -272,7 +272,7 @@ $number = mysql_num_rows($which_subject_num_from_donor_table);
                                                             </thead>
                                                             <tbody>
                                                       <?php	
-													  while($record_1 = mysql_fetch_assoc($which_subject_num_from_donor_table)) {
+													  while($record_1 = mysqli_fetch_assoc($which_subject_num_from_donor_table)) {
 														  
 														  	  $prosection_type = $record_1['prosection_type'];
 															  $which_subj = $record_1['which_subject_number'];

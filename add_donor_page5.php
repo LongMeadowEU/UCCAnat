@@ -90,7 +90,7 @@ $page4session = $_SESSION['page4session'];
     	$show_form_5 = true;
 		$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
 		$donorIDsession = $_SESSION['donorIDsession'];
-		$result = mysql_query("SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
+		$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
     	
     	if (empty($_POST) === false) {
 			// if the errors array is empty and the user has submitted the form then create the user and redirect the user
@@ -101,14 +101,14 @@ $page4session = $_SESSION['page4session'];
 				$consent_part_1 = $_POST['consent_part_1'];
 				if($consent_part_1 == "consent_retained_3_years") {
 					$consent_part_1_3_years_options = $_POST['consent_retained_anat_exam'];
-					mysql_query("UPDATE donor_table SET consent_part_1_3_years_options = '$consent_part_1_3_years_options' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET consent_part_1_3_years_options = '$consent_part_1_3_years_options' WHERE donor_reference_number = '$donorIDsession'");
 				}
 				
 				$consent_part_2 = $_POST['consent_part_2'];
 				
-				mysql_query("UPDATE donor_table SET consent_part_1 = '$consent_part_1' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET consent_part_1 = '$consent_part_1' WHERE donor_reference_number = '$donorIDsession'");
 				
-				mysql_query("UPDATE donor_table SET consent_part_2 = '$consent_part_2' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET consent_part_2 = '$consent_part_2' WHERE donor_reference_number = '$donorIDsession'");
 				
 				$page5session = $_SESSION['page5session'];
 					
@@ -228,9 +228,9 @@ $page4session = $_SESSION['page4session'];
 									
 									$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
 									$donorIDsession = $_SESSION['donorIDsession'];
-									$result = mysql_query("SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
+									$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
 											
-									while($record = mysql_fetch_assoc($result)) {
+									while($record = mysqli_fetch_assoc($result)) {
 										
 										$consent_part_1_new = $record['consent_part_1'];
 										$consent_part_1_3_years_options_new = $record['consent_part_1_3_years_options'];
@@ -358,7 +358,7 @@ $page4session = $_SESSION['page4session'];
 											
     								<?php
     									}
-    									mysql_close($db_connect);
+    									mysqli_close($db_connect);
     								?>
                                         	
 									</div><!-- /.row -->

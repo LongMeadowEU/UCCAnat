@@ -148,9 +148,9 @@ function mysqli_result($res,$row=0,$col=0){
 		// check if the email address and the email code match in one record, and active is equal to 0 (i.e. user hasn't yet activated their account)
 		// if all is ok we'll update the active state of the user
 		// do a query within a mysql_result. if the result = 1 then we have a match!
-		if(mysql_result(mysql_query("SELECT COUNT(user_id) FROM anatomy_login WHERE email = '$email' AND email_code = '$email_code' AND active = 0"), 0) == 1) {
+		if(mysqli_result(mysqli_query($db_connect,"SELECT COUNT(user_id) FROM anatomy_login WHERE email = '$email' AND email_code = '$email_code' AND active = 0"), 0) == 1) {
 			// query the database to update user active status
-			mysql_query("UPDATE anatomy_login SET active = 1 WHERE email = '$email'");
+			mysqli_query($db_connect,"UPDATE anatomy_login SET active = 1 WHERE email = '$email'");
 			
 			return true;
 		} else {
@@ -170,7 +170,7 @@ function mysqli_result($res,$row=0,$col=0){
 		
 		// CHECK : echo "INSERT INTO users ($fields) VALUES ($data)"; die();
 
-		mysql_query("INSERT INTO donor_table ($fields) VALUES ($data)");
+		mysqli_query($db_connect,"INSERT INTO donor_table ($fields) VALUES ($data)");
 	
 	}
 	
@@ -185,7 +185,7 @@ function mysqli_result($res,$row=0,$col=0){
 		
 		// CHECK : echo "INSERT INTO users ($fields) VALUES ($data)"; die();
 
-		mysql_query("INSERT INTO import_specimens ($fields) VALUES ($data)");
+		mysqli_query($db_connect,"INSERT INTO import_specimens ($fields) VALUES ($data)");
 		
 		//print_r($specimen_info_data);
 	
@@ -202,7 +202,7 @@ function mysqli_result($res,$row=0,$col=0){
 		
 		// CHECK : echo "INSERT INTO users ($fields) VALUES ($data)"; die();
 
-		mysql_query("INSERT INTO historical_pieces_table ($fields) VALUES ($data)");
+		mysqli_query($db_connect,"INSERT INTO historical_pieces_table ($fields) VALUES ($data)");
 		
 		//print_r($specimen_info_data);
 	
@@ -217,7 +217,7 @@ function mysqli_result($res,$row=0,$col=0){
 		// the data we are actually inserting
 		$data = '\'' . implode('\', \'', $new_prosection_info_data) . '\'';
 
-		mysql_query("INSERT INTO prosections_table ($fields) VALUES ($data)");
+		mysqli_query($db_connect,"INSERT INTO prosections_table ($fields) VALUES ($data)");
 	}
 	
 	function add_medical_data($medical_data) {
@@ -230,7 +230,7 @@ function mysqli_result($res,$row=0,$col=0){
 		
 		// CHECK : echo "INSERT INTO users ($fields) VALUES ($data)"; die(); 
 
-		mysql_query("UPDATE patient_general_info SET ($fields) VALUES ($data) WHERE patient_unique_id = $patIDsession");
+		mysqli_query($db_connect,"UPDATE patient_general_info SET ($fields) VALUES ($data) WHERE patient_unique_id = $patIDsession");
 	}
 	
 	// functions to prevent user from proceeding to form page 2 without filling in Add A Patient Form page 1....etc.

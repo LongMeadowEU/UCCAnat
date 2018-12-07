@@ -93,9 +93,9 @@ $page3session = $_SESSION['page3session'];
     	$show_form_4 = true;
 		$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
 		$donorIDsession = $_SESSION['donorIDsession'];
-		$result = mysql_query("SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
+		$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
 				
-		while($record = mysql_fetch_assoc($result)) {
+		while($record = mysqli_fetch_assoc($result)) {
 			
 			$male_or_female = $record['sex'];
 		}
@@ -125,25 +125,25 @@ $page3session = $_SESSION['page3session'];
 				
 				if($male_or_female == "Male") {
 					$prostatectomy = $_POST['prostatectomy'];
-					mysql_query("UPDATE donor_table SET prostatectomy = '$prostatectomy' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET prostatectomy = '$prostatectomy' WHERE donor_reference_number = '$donorIDsession'");
 				} else if($male_or_female == "Female") {
 					$hysterectomy = $_POST['hysterectomy'];
-					mysql_query("UPDATE donor_table SET hysterectomy = '$hysterectomy' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET hysterectomy = '$hysterectomy' WHERE donor_reference_number = '$donorIDsession'");
 				}
 				
 				//$reop_surgery_num_ = implode(', ', $_POST['reop_s_no']);
 				//$reop_sugery_reason_ = implode(', ', $_POST['reop_procedure']);
 				
-				mysql_query("UPDATE donor_table SET donor_conditions = '$conditions_string_post' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET donor_conditions = '$conditions_string_post' WHERE donor_reference_number = '$donorIDsession'");
 				//mysql_query("UPDATE donor_table SET sugery_number = '$reop_surgery_num_' WHERE donor_reference_number = '$donorIDsession'");
 				//mysql_query("UPDATE donor_table SET sugery_reason = '$reop_sugery_reason_' WHERE donor_reference_number = '$donorIDsession'");
 				
-				mysql_query("UPDATE donor_table SET surgery_1_name = '$surgery_1_name' WHERE donor_reference_number = '$donorIDsession'");
-				mysql_query("UPDATE donor_table SET surgery_2_name = '$surgery_2_name' WHERE donor_reference_number = '$donorIDsession'");
-				mysql_query("UPDATE donor_table SET surgery_3_name = '$surgery_3_name' WHERE donor_reference_number = '$donorIDsession'");
-				mysql_query("UPDATE donor_table SET surgery_4_name = '$surgery_4_name' WHERE donor_reference_number = '$donorIDsession'");
-				mysql_query("UPDATE donor_table SET surgery_5_name = '$surgery_5_name' WHERE donor_reference_number = '$donorIDsession'");
-				mysql_query("UPDATE donor_table SET surgery_6_name = '$surgery_6_name' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_1_name = '$surgery_1_name' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_2_name = '$surgery_2_name' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_3_name = '$surgery_3_name' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_4_name = '$surgery_4_name' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_5_name = '$surgery_5_name' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_6_name = '$surgery_6_name' WHERE donor_reference_number = '$donorIDsession'");
 					
 				$show_form_4 = false;		
 			}
@@ -321,9 +321,9 @@ $page3session = $_SESSION['page3session'];
 									
 									$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
 									$donorIDsession = $_SESSION['donorIDsession'];
-									$result = mysql_query("SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
+									$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
 											
-									while($record = mysql_fetch_assoc($result)) {
+									while($record = mysqli_fetch_assoc($result)) {
 										
 										$donor_conditions = explode(', ', $record['donor_conditions']);
 										$donor_conditions_count = count($donor_conditions);
@@ -700,7 +700,7 @@ $page3session = $_SESSION['page3session'];
 											
     								<?php
     									}
-    									mysql_close($db_connect);
+    									mysqli_close($db_connect);
     								?>
                                         	
 									</div><!-- /.row -->

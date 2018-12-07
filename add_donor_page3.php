@@ -138,34 +138,34 @@ $page2session = $_SESSION['page2session'];
 						$private_family_interment_address_3_	= $_POST['private_family_interment_address_3'];
 						
 						//mysql_query("UPDATE donor_table SET date_of_donation = '$date_of_donation' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET place_of_burial_or_cremation = '$place_of_burial_or_cremation' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_1_name = '$witness_1_name' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_1_relationship = '$witness_1_relationship' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_1 = '$witness_1_address_line_1' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_2 = '$witness_1_address_line_2' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_3 = '$witness_1_address_line_3' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_4 = '$witness_1_address_line_4' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_postcode = '$witness_1_address_line_postcode' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_1_phone_number = '$witness_1_phone_number' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET signature_present_wit_1 = '$signature_present_wit_1' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_1_email = '$witness_1_email' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET place_of_burial_or_cremation = '$place_of_burial_or_cremation' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_name = '$witness_1_name' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_relationship = '$witness_1_relationship' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_1 = '$witness_1_address_line_1' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_2 = '$witness_1_address_line_2' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_3 = '$witness_1_address_line_3' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_4 = '$witness_1_address_line_4' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_postcode = '$witness_1_address_line_postcode' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_phone_number = '$witness_1_phone_number' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET signature_present_wit_1 = '$signature_present_wit_1' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_email = '$witness_1_email' WHERE donor_reference_number = '$donorIDsession'");
 						
-						mysql_query("UPDATE donor_table SET witness_2_name = '$witness_2_name' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_2_relationship = '$witness_2_relationship' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_1 = '$witness_2_address_line_1' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_2 = '$witness_2_address_line_2' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_3 = '$witness_2_address_line_3' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_2_phone_number = '$witness_2_phone_number' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_4 = '$witness_2_address_line_4' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_postcode = '$witness_2_address_line_postcode' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET signature_present_wit_2 = '$signature_present_wit_2' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET witness_2_email = '$witness_2_email' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_name = '$witness_2_name' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_relationship = '$witness_2_relationship' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_1 = '$witness_2_address_line_1' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_2 = '$witness_2_address_line_2' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_3 = '$witness_2_address_line_3' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_phone_number = '$witness_2_phone_number' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_4 = '$witness_2_address_line_4' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_postcode = '$witness_2_address_line_postcode' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET signature_present_wit_2 = '$signature_present_wit_2' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_email = '$witness_2_email' WHERE donor_reference_number = '$donorIDsession'");
 						
-						mysql_query("UPDATE donor_table SET notes = '$notes' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET notes = '$notes' WHERE donor_reference_number = '$donorIDsession'");
 						
-						mysql_query("UPDATE donor_table SET private_family_interment_address_1 = '$private_family_interment_address_1_' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET private_family_interment_address_2 = '$private_family_interment_address_2_' WHERE donor_reference_number = '$donorIDsession'");
-						mysql_query("UPDATE donor_table SET private_family_interment_address_3 = '$private_family_interment_address_3_' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET private_family_interment_address_1 = '$private_family_interment_address_1_' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET private_family_interment_address_2 = '$private_family_interment_address_2_' WHERE donor_reference_number = '$donorIDsession'");
+						mysqli_query($db_connect,"UPDATE donor_table SET private_family_interment_address_3 = '$private_family_interment_address_3_' WHERE donor_reference_number = '$donorIDsession'");
 						
 						$page3session = $_SESSION['page3session'];
 			} 

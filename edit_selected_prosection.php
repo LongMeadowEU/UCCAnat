@@ -15,9 +15,9 @@ $connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
 	
 $show_form_new = true;
 
-$which_subject_num_from_donor_table = mysql_query("SELECT * FROM donor_table WHERE subject_number = '$selected_subject_number_session'") or die($connect_error1);
+$which_subject_num_from_donor_table = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE subject_number = '$selected_subject_number_session'") or die($connect_error1);
 
-while($record = mysql_fetch_assoc($which_subject_num_from_donor_table)) {
+while($record = mysqli_fetch_assoc($which_subject_num_from_donor_table)) {
 				
 	  $selected_subject_number = $record['subject_number'];
 	  $consent_part_1_new = $record['consent_part_1'];
@@ -26,8 +26,8 @@ while($record = mysql_fetch_assoc($which_subject_num_from_donor_table)) {
 
 }
 
-$which_prosectionID_from_prosec_table = mysql_query("SELECT * FROM prosections_table WHERE prosection_id = '$selected_prosection_id'") or die($connect_error1);
-while($row = mysql_fetch_assoc($which_prosectionID_from_prosec_table)) {
+$which_prosectionID_from_prosec_table = mysqli_query($db_connect,"SELECT * FROM prosections_table WHERE prosection_id = '$selected_prosection_id'") or die($connect_error1);
+while($row = mysqli_fetch_assoc($which_prosectionID_from_prosec_table)) {
 	$date_var = $row['date_of_disposal_prosec'];;
 	$prosec_disposal_date = date('d-m-Y', strtotime($date_var));
 	$prosec_send_to_archive = $row['send_to_archive'];
@@ -94,18 +94,18 @@ if(isset($_POST['save_and_edit_prosection'])) {
 	  	  $prosection_feature_specific_1 = implode(', ', $_POST['prosection_region_specific_1']);
 		  array_push($prosection_features_array, $prosection_feature_specific_1);
 		  
-		  mysql_query("UPDATE prosections_table SET prosection_type_1 = '$type_of_prosection_1' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_region_1 = '$prosection_region_1' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_feature_specific_1 = '$prosection_feature_specific_1' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_type_1 = '$type_of_prosection_1' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_region_1 = '$prosection_region_1' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_feature_specific_1 = '$prosection_feature_specific_1' WHERE prosection_id = '$selected_prosection_id'");
 		  
 	  } else {
 		   $type_of_prosection_1 = "0";
 		   $prosection_region_1 = "0";
 		   $prosection_feature_specific_1 = "0";
 		   
-		  mysql_query("UPDATE prosections_table SET prosection_type_1 = '$type_of_prosection_1' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_region_1 = '$prosection_region_1' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_feature_specific_1 = '$prosection_feature_specific_1' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_type_1 = '$type_of_prosection_1' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_region_1 = '$prosection_region_1' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_feature_specific_1 = '$prosection_feature_specific_1' WHERE prosection_id = '$selected_prosection_id'");
 	  }
 	  
 	  if(isset($_POST['type_of_prosection_2'])) {
@@ -117,18 +117,18 @@ if(isset($_POST['save_and_edit_prosection'])) {
 	  	  $prosection_feature_specific_2 = implode(', ', $_POST['prosection_region_specific_2']);
 		  array_push($prosection_features_array, $prosection_feature_specific_2);
 		  
-		  mysql_query("UPDATE prosections_table SET prosection_type_2 = '$type_of_prosection_2' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_region_2 = '$prosection_region_2' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_feature_specific_2 = '$prosection_feature_specific_2' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_type_2 = '$type_of_prosection_2' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_region_2 = '$prosection_region_2' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_feature_specific_2 = '$prosection_feature_specific_2' WHERE prosection_id = '$selected_prosection_id'");
 		  
 	  } else {
 		   $type_of_prosection_2 = "0";
 		   $prosection_region_2 = "0";
 		   $prosection_feature_specific_2 = "0";
 		   
-		  mysql_query("UPDATE prosections_table SET prosection_type_2 = '$type_of_prosection_2' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_region_2 = '$prosection_region_2' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_feature_specific_2 = '$prosection_feature_specific_2' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_type_2 = '$type_of_prosection_2' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_region_2 = '$prosection_region_2' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_feature_specific_2 = '$prosection_feature_specific_2' WHERE prosection_id = '$selected_prosection_id'");
 	  }
 	  
 	  if(isset($_POST['type_of_prosection_3'])) {
@@ -140,18 +140,18 @@ if(isset($_POST['save_and_edit_prosection'])) {
 	  	  $prosection_feature_specific_3 = implode(', ', $_POST['prosection_region_specific_3']);
 		  array_push($prosection_features_array, $prosection_feature_specific_3);
 		  
-		  mysql_query("UPDATE prosections_table SET prosection_type_3 = '$type_of_prosection_3' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_region_3 = '$prosection_region_3' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_feature_specific_3 = '$prosection_feature_specific_3' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_type_3 = '$type_of_prosection_3' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_region_3 = '$prosection_region_3' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_feature_specific_3 = '$prosection_feature_specific_3' WHERE prosection_id = '$selected_prosection_id'");
 		  
 	  } else {
 		   $type_of_prosection_3 = "0";
 		   $prosection_region_3 = "0";
 		   $prosection_feature_specific_3 = "0";
 		   
-		  mysql_query("UPDATE prosections_table SET prosection_type_3 = '$type_of_prosection_3' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_region_3 = '$prosection_region_3' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_feature_specific_3 = '$prosection_feature_specific_3' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_type_3 = '$type_of_prosection_3' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_region_3 = '$prosection_region_3' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_feature_specific_3 = '$prosection_feature_specific_3' WHERE prosection_id = '$selected_prosection_id'");
 	  }
 	  
 	  if(isset($_POST['type_of_prosection_4'])) {
@@ -163,41 +163,41 @@ if(isset($_POST['save_and_edit_prosection'])) {
 	  	  $prosection_feature_specific_4 = implode(', ', $_POST['prosection_region_specific_4']);
 		  array_push($prosection_features_array, $prosection_feature_specific_4);
 		  
-		  mysql_query("UPDATE prosections_table SET prosection_type_4 = '$type_of_prosection_4' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_region_4 = '$prosection_region_4' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_feature_specific_4 = '$prosection_feature_specific_4' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_type_4 = '$type_of_prosection_4' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_region_4 = '$prosection_region_4' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_feature_specific_4 = '$prosection_feature_specific_4' WHERE prosection_id = '$selected_prosection_id'");
 		  
 	  } else {
 		   $type_of_prosection_4 = "0";
 		   $prosection_region_4 = "0";
 		   $prosection_feature_specific_4 = "0";
 		   
-		  mysql_query("UPDATE prosections_table SET prosection_type_4 = '$type_of_prosection_4' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_region_4 = '$prosection_region_4' WHERE prosection_id = '$selected_prosection_id'");
-		  mysql_query("UPDATE prosections_table SET prosection_feature_specific_4 = '$prosection_feature_specific_4' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_type_4 = '$type_of_prosection_4' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_region_4 = '$prosection_region_4' WHERE prosection_id = '$selected_prosection_id'");
+		  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_feature_specific_4 = '$prosection_feature_specific_4' WHERE prosection_id = '$selected_prosection_id'");
 		  
 	  }
 	  $prosection_types_array_insert = implode(', ', $prosection_types_array);
 	  $prosection_regions_array_insert = implode(', ', $prosection_regions_array);
 	  $prosection_features_array_insert = implode(', ', $prosection_features_array);
   
-  mysql_query("UPDATE prosections_table SET prosection_type = '$prosection_type' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET prosection_region = '$prosection_region' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET prosection_feature_specific = '$prosection_feature_specific' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_type = '$prosection_type' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_region = '$prosection_region' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_feature_specific = '$prosection_feature_specific' WHERE prosection_id = '$selected_prosection_id'");
   
-  mysql_query("UPDATE prosections_table SET storage_type = '$storage_type' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET storage_unit = '$storage_unit' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET storage_shelf = '$storage_shelf' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET storage_type = '$storage_type' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET storage_unit = '$storage_unit' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET storage_shelf = '$storage_shelf' WHERE prosection_id = '$selected_prosection_id'");
   
-  mysql_query("UPDATE prosections_table SET plastinated = '$plastinated' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET date_of_disposal_prosec = '$disposal_date' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET send_to_archive = '$send_to_archive' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET disposal_method = '$disposal_method' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET prosec_comments = '$prosec_comments' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET plastinated = '$plastinated' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET date_of_disposal_prosec = '$disposal_date' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET send_to_archive = '$send_to_archive' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET disposal_method = '$disposal_method' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET prosec_comments = '$prosec_comments' WHERE prosection_id = '$selected_prosection_id'");
   
-  mysql_query("UPDATE prosections_table SET prosection_types_list = '$prosection_types_array_insert' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET prosection_regions_list = '$prosection_regions_array_insert' WHERE prosection_id = '$selected_prosection_id'");
-  mysql_query("UPDATE prosections_table SET prosection_features_list = '$prosection_features_array_insert' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_types_list = '$prosection_types_array_insert' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_regions_list = '$prosection_regions_array_insert' WHERE prosection_id = '$selected_prosection_id'");
+  mysqli_query($db_connect,"UPDATE prosections_table SET prosection_features_list = '$prosection_features_array_insert' WHERE prosection_id = '$selected_prosection_id'");
 	  
 	$new_row_to_add = false;
 	header("Location: edit_selected_prosection.php");
@@ -951,7 +951,7 @@ if(isset($_POST['save_and_edit_prosection'])) {
                                         </form>
     								<?php
     									}
-    									mysql_close($db_connect);
+    									mysqli_close($db_connect);
     								?>
                                         	
 									</div><!-- /.row -->

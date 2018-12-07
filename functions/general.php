@@ -17,10 +17,10 @@
 	}
 	
 	// for sanitizing the data when registering a user
-	function array_sanitize(&$item) {
+	function array_sanitize($cxn,&$item) {
 		
 		// pass the item in, reassign it, and then pass the item to the values within register_data in users [register_users function]
-		$item = mysql_real_escape_string($item);
+		$item = mysqli_real_escape_string($cxn,$item);
 	}
 	
 	function email($to, $subject, $body) {

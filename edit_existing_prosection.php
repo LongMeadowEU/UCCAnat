@@ -134,15 +134,15 @@ if (empty($_POST) === false) {
                                   <tbody>
                                   
 <?php 
-$which_subject_num_from_donor_table_new = mysql_query("SELECT * FROM donor_table WHERE subject_number = '$selected_subject_number_session'") or die($connect_error1);
+$which_subject_num_from_donor_table_new = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE subject_number = '$selected_subject_number_session'") or die($connect_error1);
 
-while($record = mysql_fetch_assoc($which_subject_num_from_donor_table_new)) {
+while($record = mysqli_fetch_assoc($which_subject_num_from_donor_table_new)) {
 	$selected_subject_number = $record['subject_number'];
 	
 	$array_prosections = array();
-	$does_subject_have_prosection = mysql_query("SELECT unique_id FROM prosections_table WHERE which_subject_number = '$selected_subject_number'") or die($connect_error1);
+	$does_subject_have_prosection = mysqli_query($db_connect,"SELECT unique_id FROM prosections_table WHERE which_subject_number = '$selected_subject_number'") or die($connect_error1);
 	
-	if(mysql_num_rows($does_subject_have_prosection) == 0) {
+	if(mysqli_num_rows($does_subject_have_prosection) == 0) {
 		 echo '<tr class="non_selectable">';
 				  echo '<td>' . 'There are currently no prosections for this subject.' . '</td>';
 				  echo '<td>' . 'N/A' . '</td>';
@@ -152,11 +152,11 @@ while($record = mysql_fetch_assoc($which_subject_num_from_donor_table_new)) {
 				  echo '<td>' . 'N/A' . '</td>';
 		echo '</tr>';
 	} else {
-		while($row = mysql_fetch_array($does_subject_have_prosection)) {
+		while($row = mysqli_fetch_array($does_subject_have_prosection)) {
 			$unique_id = $row['unique_id'];
 			
-			$unique_id_form_table = mysql_query("SELECT * FROM prosections_table WHERE unique_id = '$unique_id'") or die($connect_error1);
-			while($row_1 = mysql_fetch_array($unique_id_form_table)) {
+			$unique_id_form_table = mysqli_query($db_connect,"SELECT * FROM prosections_table WHERE unique_id = '$unique_id'") or die($connect_error1);
+			while($row_1 = mysqli_fetch_array($unique_id_form_table)) {
 				/*$array_prosections[] = array('prosection' => $row_1['prosection_region'], 'prosection_1' => $row_1['prosection_region_1'], 'prosection_2' => $row_1['prosection_region_2'], 'prosection_3' => $row_1['prosection_region_3'], 'prosection_4' => $row_1['prosection_region_4']);
 				 $array_values = implode(', ', $array_prosections); */
 				

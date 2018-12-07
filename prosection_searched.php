@@ -77,9 +77,9 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 		
 		$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
 		
-		$which_subject_num_from_donor_table = mysql_query("SELECT * FROM donor_table WHERE subject_number = '$selected_donor_ref_hist'") or die($connect_error1);
+		$which_subject_num_from_donor_table = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE subject_number = '$selected_donor_ref_hist'") or die($connect_error1);
 
-		while($record = mysql_fetch_assoc($which_subject_num_from_donor_table)) {
+		while($record = mysqli_fetch_assoc($which_subject_num_from_donor_table)) {
 					  
 			$selected_subject_number = $record['subject_number'];
 			$consent_part_1_new = $record['consent_part_1'];
@@ -88,8 +88,8 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 		
 		}
 	
-	$pro_id = mysql_query("SELECT * FROM prosections_table WHERE which_subject_number = '$selected_subject_number'");
-	while($record__2 = mysql_fetch_assoc($pro_id)) {
+	$pro_id = mysqli_query($db_connect,"SELECT * FROM prosections_table WHERE which_subject_number = '$selected_subject_number'");
+	while($record__2 = mysqli_fetch_assoc($pro_id)) {
 					  
 			$prosec_id = $record__2['prosection_id'];
 	}
@@ -99,7 +99,7 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 			
 				<div id="page-wrapper-1">
 				<?php 
-					if(mysql_num_rows($which_subject_num_from_donor_table) != 0) {
+					if(mysqli_num_rows($which_subject_num_from_donor_table) != 0) {
 				?>
 						<div id="border-under-header">
                           <div class="row" id="welcomePageMainDiv">

@@ -107,17 +107,17 @@ $donorIDsession = $_SESSION['donorIDsession'];
 				$new_date_of_death = date('Y-m-d');
 				$new_date_of_receipt = date('Y-m-d');
 				
-				mysql_query("UPDATE donor_table SET date_of_death = '$new_date_of_death' WHERE donor_reference_number = '$donorIDsession'");
-				mysql_query("UPDATE donor_table SET date_of_receipt = '$new_date_of_receipt' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET date_of_death = '$new_date_of_death' WHERE donor_reference_number = '$donorIDsession'");
+				mysqli_query($db_connect,"UPDATE donor_table SET date_of_receipt = '$new_date_of_receipt' WHERE donor_reference_number = '$donorIDsession'");
 
 					// update the correct row for the new patient info added on page 1 of the form with the new changes
-					mysql_query("UPDATE donor_table SET address_line_1 = '$address_line_1' WHERE donor_reference_number = '$donorIDsession'");
-					mysql_query("UPDATE donor_table SET address_line_2 = '$address_line_2' WHERE donor_reference_number = '$donorIDsession'");
-					mysql_query("UPDATE donor_table SET address_line_3 = '$address_line_3' WHERE donor_reference_number = '$donorIDsession'");
-					mysql_query("UPDATE donor_table SET address_line_4 = '$address_line_4' WHERE donor_reference_number = '$donorIDsession'");
-					mysql_query("UPDATE donor_table SET address_line_postcode = '$address_line_postcode' WHERE donor_reference_number = '$donorIDsession'");
-					mysql_query("UPDATE donor_table SET donor_phone_number = '$donor_phone_number' WHERE donor_reference_number = '$donorIDsession'");
-					mysql_query("UPDATE donor_table SET donor_email_address = '$donor_email_address' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET address_line_1 = '$address_line_1' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET address_line_2 = '$address_line_2' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET address_line_3 = '$address_line_3' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET address_line_4 = '$address_line_4' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET address_line_postcode = '$address_line_postcode' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET donor_phone_number = '$donor_phone_number' WHERE donor_reference_number = '$donorIDsession'");
+					mysqli_query($db_connect,"UPDATE donor_table SET donor_email_address = '$donor_email_address' WHERE donor_reference_number = '$donorIDsession'");
 					
 					$page2session = $_SESSION['page2session'];
 							
