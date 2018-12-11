@@ -12,9 +12,9 @@ if(no_donor_selected() != true) {
 $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 
     	$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
-		$result = mysql_query("SELECT * FROM donor_table WHERE donor_reference_number = $selected_donor_ref_hist") or die($connect_error1);
+		$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number = $selected_donor_ref_hist") or die($connect_error1);
 					
-		while($record = mysql_fetch_assoc($result)) {
+		while($record = mysqli_fetch_assoc($result)) {
 				
 				$donor_conditions = explode(', ', $record['donor_conditions']);
 				$donor_conditions_count = count($donor_conditions);
@@ -49,21 +49,21 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 				$new_surgery_5_name = $_POST['surgery_5_text_new'];
 				$new_surgery_6_name = $_POST['surgery_6_text_new'];
 				
-				mysql_query("UPDATE donor_table SET donor_conditions = '$new_conditions_string' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+				mysqli_query($db_connect,"UPDATE donor_table SET donor_conditions = '$new_conditions_string' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 				
-				mysql_query("UPDATE donor_table SET surgery_1_name = '$new_surgery_1_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-				mysql_query("UPDATE donor_table SET surgery_2_name = '$new_surgery_2_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-				mysql_query("UPDATE donor_table SET surgery_3_name = '$new_surgery_3_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-				mysql_query("UPDATE donor_table SET surgery_4_name = '$new_surgery_4_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-				mysql_query("UPDATE donor_table SET surgery_5_name = '$new_surgery_5_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-				mysql_query("UPDATE donor_table SET surgery_6_name = '$new_surgery_6_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_1_name = '$new_surgery_1_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_2_name = '$new_surgery_2_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_3_name = '$new_surgery_3_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_4_name = '$new_surgery_4_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_5_name = '$new_surgery_5_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+				mysqli_query($db_connect,"UPDATE donor_table SET surgery_6_name = '$new_surgery_6_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 								
 				if($male_or_female_new == "Male") {
 					$prostatectomy_1 = $_POST['prostatectomy'];
-					mysql_query("UPDATE donor_table SET prostatectomy = '$prostatectomy_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+					mysqli_query($db_connect,"UPDATE donor_table SET prostatectomy = '$prostatectomy_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 				} else if($male_or_female_new == "Female") {
 					$hysterectomy_1 = $_POST['hysterectomy'];
-					mysql_query("UPDATE donor_table SET hysterectomy = '$hysterectomy_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+					mysqli_query($db_connect,"UPDATE donor_table SET hysterectomy = '$hysterectomy_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 				}
 						header("Location: donor_history_4_medical_history.php");
 			} 

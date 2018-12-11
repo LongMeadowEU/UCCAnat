@@ -12,9 +12,9 @@ if(no_donor_selected() != true) {
 $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 
     	$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
-		$result = mysql_query("SELECT * FROM donor_table WHERE donor_reference_number = $selected_donor_ref_hist") or die($connect_error1);
+		$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number = $selected_donor_ref_hist") or die($connect_error1);
 					
-		while($record = mysql_fetch_assoc($result)) {
+		while($record = mysqli_fetch_assoc($result)) {
 				
 				//$date_of_donation_1 = $record['date_of_donation'];
 				$witness1name_1 = $record['witness_1_name'];
@@ -108,7 +108,7 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 						if(!empty($new_place_of_burial_or_cremation)) {
 							$var_date_of_burCrem = $_POST['date_of_burial_or_cremation'];
 							$var_date_of_burial_or_cremation = date('Y-m-d', strtotime($var_date_of_burCrem));
-							mysql_query("UPDATE donor_table SET date_of_burial_or_cremation = '$var_date_of_burial_or_cremation' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET date_of_burial_or_cremation = '$var_date_of_burial_or_cremation' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 						} else if(empty($new_place_of_burial_or_cremation)){
 						}
 						
@@ -120,12 +120,12 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 							$new_organise_coffin_priv_plot = $_POST['organise_coffin_priv_plot'];
 							$new_grave_opened_priv_plot = $_POST['grave_opened_priv_plot'];
 							
-							mysql_query("UPDATE donor_table SET private_family_interment_address_1 = '$new_private_family_interment_address' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-							mysql_query("UPDATE donor_table SET private_family_interment_address_2 = '$new_private_family_interment_address_2' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-							mysql_query("UPDATE donor_table SET private_family_interment_address_3 = '$new_private_family_interment_address_3' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-							mysql_query("UPDATE donor_table SET funeral_director_priv_plot = '$new_funeral_director_priv_plot' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-							mysql_query("UPDATE donor_table SET organise_coffin_priv_plot = '$new_organise_coffin_priv_plot' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-							mysql_query("UPDATE donor_table SET grave_opened_priv_plot = '$new_grave_opened_priv_plot' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET private_family_interment_address_1 = '$new_private_family_interment_address' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET private_family_interment_address_2 = '$new_private_family_interment_address_2' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET private_family_interment_address_3 = '$new_private_family_interment_address_3' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET funeral_director_priv_plot = '$new_funeral_director_priv_plot' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET organise_coffin_priv_plot = '$new_organise_coffin_priv_plot' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET grave_opened_priv_plot = '$new_grave_opened_priv_plot' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 						}
 						
 						$new_notes = $_POST['new_notes'];
@@ -133,39 +133,39 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 						// update the correct row for the new patient info added on page 1 of the form with the new changes
 						//mysql_query("UPDATE donor_table SET date_of_donation = '$new_date_of_donation' WHERE donor_reference_number = '$selected_donor_ref_hist'");	
 					
-						mysql_query("UPDATE donor_table SET witness_1_name = '$new_witness1name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_1_relationship = '$new_witness_1_relationship' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_1 = '$new_witness_1_address_line_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_2 = '$new_witness_1_address_line_2' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_3 = '$new_witness_1_address_line_3' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_1_phone_number = '$new_witness_1_phone_number' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_4 = '$witness_1_address_line_4' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_1_address_line_postcode = '$witness_1_address_line_postcode' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET signature_present_wit_1 = '$signature_present_wit_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_1_email = '$witness_1_email' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_name = '$new_witness1name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_relationship = '$new_witness_1_relationship' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_1 = '$new_witness_1_address_line_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_2 = '$new_witness_1_address_line_2' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_3 = '$new_witness_1_address_line_3' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_phone_number = '$new_witness_1_phone_number' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_4 = '$witness_1_address_line_4' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_address_line_postcode = '$witness_1_address_line_postcode' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET signature_present_wit_1 = '$signature_present_wit_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_1_email = '$witness_1_email' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 						
-						mysql_query("UPDATE donor_table SET witness_2_name = '$new_witness_2_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_2_relationship = '$new_witness_2_relationship' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_1 = '$new_witness_2_address_line_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_2 = '$new_witness_2_address_line_2' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_3 = '$new_witness_2_address_line_3' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_2_phone_number = '$new_witness_2_phone_number' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_4 = '$witness_2_address_line_4' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_2_address_line_postcode = '$witness_2_address_line_postcode' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET signature_present_wit_2 = '$signature_present_wit_2' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_name = '$new_witness_2_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_relationship = '$new_witness_2_relationship' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_1 = '$new_witness_2_address_line_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_2 = '$new_witness_2_address_line_2' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_3 = '$new_witness_2_address_line_3' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_phone_number = '$new_witness_2_phone_number' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_4 = '$witness_2_address_line_4' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_address_line_postcode = '$witness_2_address_line_postcode' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET signature_present_wit_2 = '$signature_present_wit_2' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 						
-						mysql_query("UPDATE donor_table SET place_of_burial_or_cremation = '$new_place_of_burial_or_cremation' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET witness_2_email = '$witness_2_email' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET place_of_burial_or_cremation = '$new_place_of_burial_or_cremation' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET witness_2_email = '$witness_2_email' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 						
-						mysql_query("UPDATE donor_table SET notes = '$new_notes' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET notes = '$new_notes' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 						
-						mysql_query("UPDATE donor_table SET organise_coffin = '$organise_coffin_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET funeral_director = '$funeral_director_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET grave_opened = '$grave_opened_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET crematorium_booked = '$crematorium_booked_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET organise_coffin_cremation = '$organise_coffin_cremation_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET funeral_director_cremation = '$funeral_director_cremation_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET cremation_forms_complete = '$cremation_forms_complete_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET organise_coffin = '$organise_coffin_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET funeral_director = '$funeral_director_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET grave_opened = '$grave_opened_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET crematorium_booked = '$crematorium_booked_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET organise_coffin_cremation = '$organise_coffin_cremation_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET funeral_director_cremation = '$funeral_director_cremation_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET cremation_forms_complete = '$cremation_forms_complete_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 
 						header("Location: donor_history_3_burial_witness_info.php");
 			} 

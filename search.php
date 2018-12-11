@@ -10,15 +10,15 @@ if(logged_in() !== true) {
 	$show_form_new = true;
 	
 	if($radio == "donorName") {
-		$result = mysql_query("SELECT * FROM donor_table WHERE CONCAT(first_name, ' ', sur_name) LIKE '%$search%' OR sur_name LIKE '%$search%'") or die($connect_error1);
+		$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE CONCAT(first_name, ' ', sur_name) LIKE '%$search%' OR sur_name LIKE '%$search%'") or die($connect_error1);
 	} else if($radio == "referenceNum") {
-		$result = mysql_query("SELECT * FROM donor_table WHERE donor_reference_number LIKE '%$search%'") or die($connect_error1);
+		$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number LIKE '%$search%'") or die($connect_error1);
 	} else if($radio == "donorDOB") {
 		
-		$result = mysql_query("SELECT * FROM donor_table WHERE date_of_birth LIKE '%$search%'") or die($connect_error1);
+		$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE date_of_birth LIKE '%$search%'") or die($connect_error1);
 	}
 	
-	$number = mysql_num_rows($result);
+	$number = mysqli_num_rows($result);
 
 		// if the errors array is empty and the user has submitted the form then create the user and redirect the user
 		if(isset($_POST['sumbitBT_new'])) {
@@ -157,13 +157,13 @@ if(logged_in() !== true) {
 										 </span></h4>
 									</div><!-- /.panel-heading -->
 									<?php 
-										if(mysql_num_rows($result) != 0) {
+										if(mysqli_num_rows($result) != 0) {
 									?>
 									<div class="panel-body">
 										<div class="dataTable_wrapper">
 											<div class="table-responsive">
 											<?php
-											if (mysql_num_rows($result) > 0) {
+											if (mysqli_num_rows($result) > 0) {
 											?>
 												<table class="table table-striped table-bordered table-hover sortable" id="patientTable">
 													<thead>
@@ -178,7 +178,7 @@ if(logged_in() !== true) {
 													</thead>
                                                 	<tbody>
                                         <?php				
-										while($row = mysql_fetch_assoc($result)) {
+										while($row = mysqli_fetch_assoc($result)) {
 	
 												$date_of_birth = $row['date_of_birth'];
 												$formatted_date_of_birth = date('d-m-Y', strtotime($date_of_birth));

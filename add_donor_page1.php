@@ -207,7 +207,7 @@ if ($maxValue < 6000) {
                                                     </td>
 
 
-    <!-- <td class="formInput"><input type="text" class="form-control" id="sex" name="sex" placeholder="Sex" required></td> -->
+        <!-- <td class="formInput"><input type="text" class="form-control" id="sex" name="sex" placeholder="Sex" required></td> -->
                                                 </tr>
                                                 <tr>
                                                     <td class="formLabel" align="left">
@@ -327,7 +327,7 @@ if ($maxValue < 6000) {
 
                                     $connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
                                     $donorIDsession = $_SESSION['donorIDsession'];
-                                    $result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
+                                    $result = mysqli_query($db_connect, "SELECT * FROM donor_table WHERE donor_reference_number = $donorIDsession") or die($connect_error1);
 
                                     while ($record = mysqli_fetch_assoc($result)) {
 
@@ -337,7 +337,6 @@ if ($maxValue < 6000) {
                                         $date_of_birth_1 = $record['date_of_birth'];
                                         $sex_1 = $record['sex'];
                                         $religion_1 = $record['religion'];
-                                        $date_of_donation_1 = $record['date_of_donation'];
                                         $signature_checked_new = $record['signature_present'];
                                         $date_of_donation_1 = $record['date_of_donation'];
                                         $civil_status_1 = $record['civil_status'];
@@ -370,13 +369,13 @@ if ($maxValue < 6000) {
                                                     <!-- <td class="formInput"><input type="text" class="form-control" id="sex" name="sex" placeholder="< echo $sex_1 ?>" disabled></td>												-->
                                                     <td class="formInput">
                                                         <label class="radio-inline">
-    <?php
-    if ($sex_1 == "Male") {
-        echo '<input type="radio" class="enable_disable" name="sex" id="sex"  value="Male" checked="checked" disabled/>';
-    } else {
-        echo '<input type="radio" class="enable_disable" name="sex" id="sex"  value="Male"/>';
-    };
-    ?>
+                                                            <?php
+                                                            if ($sex_1 == "Male") {
+                                                                echo '<input type="radio" class="enable_disable" name="sex" id="sex"  value="Male" checked="checked" disabled/>';
+                                                            } else {
+                                                                echo '<input type="radio" class="enable_disable" name="sex" id="sex"  value="Male"/>';
+                                                            };
+                                                            ?>
                                                             Male</label> 
                                                         <label class="radio-inline">
                                                             <?php
@@ -410,162 +409,220 @@ if ($maxValue < 6000) {
                                                     <td class="formInput">
                                                         <select class="form-control enable_disable" id="religion" name="religion" placeholder="Select Religion" disabled>
                                                             <optgroup label="Christian">
-    <?php if ($religion_1 == "catholic") {
-        echo '<option selected="selected">Roman Catholic</option>';
-    } else {
-        echo '<option >Roman Catholic</option>';
-    } ?>
-                                                                <?php if ($religion_1 == "church_of_ireland") {
+                                                                <?php
+                                                                if ($religion_1 == "catholic") {
+                                                                    echo '<option selected="selected">Roman Catholic</option>';
+                                                                } else {
+                                                                    echo '<option >Roman Catholic</option>';
+                                                                }
+                                                                ?>
+                                                                <?php
+                                                                if ($religion_1 == "church_of_ireland") {
                                                                     echo '<option selected="selected">Church of Ireland</option>';
                                                                 } else {
                                                                     echo '<option >Church of Ireland</option>';
-                                                                } ?>
-                                                                <?php if ($religion_1 == "presbyterian") {
+                                                                }
+                                                                ?>
+                                                                <?php
+                                                                if ($religion_1 == "presbyterian") {
                                                                     echo '<option selected="selected">Presbyterian</option>';
                                                                 } else {
                                                                     echo '<option >Presbyterian</option>';
-                                                                } ?>
-                                                                <?php if ($religion_1 == "orthodox") {
+                                                                }
+                                                                ?>
+                                                                <?php
+                                                                if ($religion_1 == "orthodox") {
                                                                     echo '<option selected="selected">Orthodox</option>';
                                                                 } else {
                                                                     echo '<option >Orthodox</option>';
-                                                                } ?> 
+                                                                }
+                                                                ?> 
                                                             </optgroup>
                                                             <optgroup label="Non-Religious">
-                                                                <?php if ($religion_1 == "secular") {
+                                                                <?php
+                                                                if ($religion_1 == "secular") {
                                                                     echo '<option selected="selected">Secular</option>';
                                                                 } else {
                                                                     echo '<option >Secular</option>';
-                                                                } ?> 
-                                                                <?php if ($religion_1 == "athiest") {
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "athiest") {
                                                                     echo '<option selected="selected">Athiest</option>';
                                                                 } else {
                                                                     echo '<option >Athiest</option>';
-                                                                } ?> 
-                                                                <?php if ($religion_1 == "agnostic") {
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "agnostic") {
                                                                     echo '<option selected="selected">Agnostic</option>';
                                                                 } else {
                                                                     echo '<option >Agnostic</option>';
-                                                                } ?> 
-    <?php if ($religion_1 == "humanist") {
-        echo '<option selected="selected">Humanist</option>';
-    } else {
-        echo '<option >Humanist</option>';
-    } ?> 
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "humanist") {
+                                                                    echo '<option selected="selected">Humanist</option>';
+                                                                } else {
+                                                                    echo '<option >Humanist</option>';
+                                                                }
+                                                                ?> 
                                                                 <option value="humanist">Humanist</option>
                                                             </optgroup>
                                                             <optgroup label="Other">
-                                                <?php if ($religion_1 == "african_traditional_and_diasporic") {
-                                                    echo '<option selected="selected">African Traditional and Diasporic</option>';
-                                                } else {
-                                                    echo '<option >African Traditional and Diasporic</option>';
-                                                } ?> 
-                                                <?php if ($religion_1 == "bahai") {
-                                                    echo '<option selected="selected">Bahai</option>';
-                                                } else {
-                                                    echo '<option >Bahai</option>';
-                                                } ?> 
-    <?php if ($religion_1 == "baptist") {
-        echo '<option selected="selected">Baptist</option>';
-    } else {
-        echo '<option >Baptist</option>';
-    } ?> 
-                                                            <?php if ($religion_1 == "buddhist") {
-                                                                echo '<option selected="selected">Buddhist</option>';
-                                                            } else {
-                                                                echo '<option >Buddhist</option>';
-                                                            } ?> 
-    <?php if ($religion_1 == "chinese_traditional_religion") {
-        echo '<option selected="selected">Chinese Traditional Religion</option>';
-    } else {
-        echo '<option >Chinese Traditional Religion</option>';
-    } ?> 
-    <?php if ($religion_1 == "christian_science") {
-        echo '<option selected="selected">Christian Science</option>';
-    } else {
-        echo '<option >Christian Science</option>';
-    } ?> 
-    <?php if ($religion_1 == "hindu") {
-        echo '<option selected="selected">Hindu</option>';
-    } else {
-        echo '<option >Hindu</option>';
-    } ?> 
-    <?php if ($religion_1 == "ismlam_sunni") {
-        echo '<option selected="selected">Islam - Sunni</option>';
-    } else {
-        echo '<option >Islam - Sunni</option>';
-    } ?> 
-    <?php if ($religion_1 == "ismlam_sufism") {
-        echo '<option selected="selected">Islam - Sufism</option>';
-    } else {
-        echo '<option >Islam - Sufism</option>';
-    } ?> 
-                                                            <?php if ($religion_1 == "ismlam_shia") {
-                                                                echo '<option selected="selected">Islam - Shia</option>';
-                                                            } else {
-                                                                echo '<option >Islam - Shia</option>';
-                                                            } ?> 
-                                                            <?php if ($religion_1 == "jain") {
-                                                                echo '<option selected="selected">Jain</option>';
-                                                            } else {
-                                                                echo '<option >Jain</option>';
-                                                            } ?> 
-                                                            <?php if ($religion_1 == "jehovah_witness") {
-                                                                echo '<option selected="selected">Jehovah\'s Witness</option>';
-                                                            } else {
-                                                                echo '<option >Jehovah\'s Witness</option>';
-                                                            } ?> 
-    <?php if ($religion_1 == "jewish") {
-        echo '<option selected="selected">Jewish</option>';
-    } else {
-        echo '<option >Jewish</option>';
-    } ?> 
-    <?php if ($religion_1 == "methodist") {
+                                                                <?php
+                                                                if ($religion_1 == "african_traditional_and_diasporic") {
+                                                                    echo '<option selected="selected">African Traditional and Diasporic</option>';
+                                                                } else {
+                                                                    echo '<option >African Traditional and Diasporic</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "bahai") {
+                                                                    echo '<option selected="selected">Bahai</option>';
+                                                                } else {
+                                                                    echo '<option >Bahai</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "baptist") {
+                                                                    echo '<option selected="selected">Baptist</option>';
+                                                                } else {
+                                                                    echo '<option >Baptist</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "buddhist") {
+                                                                    echo '<option selected="selected">Buddhist</option>';
+                                                                } else {
+                                                                    echo '<option >Buddhist</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "chinese_traditional_religion") {
+                                                                    echo '<option selected="selected">Chinese Traditional Religion</option>';
+                                                                } else {
+                                                                    echo '<option >Chinese Traditional Religion</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "christian_science") {
+                                                                    echo '<option selected="selected">Christian Science</option>';
+                                                                } else {
+                                                                    echo '<option >Christian Science</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "hindu") {
+                                                                    echo '<option selected="selected">Hindu</option>';
+                                                                } else {
+                                                                    echo '<option >Hindu</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "ismlam_sunni") {
+                                                                    echo '<option selected="selected">Islam - Sunni</option>';
+                                                                } else {
+                                                                    echo '<option >Islam - Sunni</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "ismlam_sufism") {
+                                                                    echo '<option selected="selected">Islam - Sufism</option>';
+                                                                } else {
+                                                                    echo '<option >Islam - Sufism</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "ismlam_shia") {
+                                                                    echo '<option selected="selected">Islam - Shia</option>';
+                                                                } else {
+                                                                    echo '<option >Islam - Shia</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "jain") {
+                                                                    echo '<option selected="selected">Jain</option>';
+                                                                } else {
+                                                                    echo '<option >Jain</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "jehovah_witness") {
+                                                                    echo '<option selected="selected">Jehovah\'s Witness</option>';
+                                                                } else {
+                                                                    echo '<option >Jehovah\'s Witness</option>';
+                                                                }
+                                                                ?> 
+                                                                <?php
+                                                                if ($religion_1 == "jewish") {
+                                                                    echo '<option selected="selected">Jewish</option>';
+                                                                } else {
+                                                                    echo '<option >Jewish</option>';
+                                                                }
+                                                                ?> 
+    <?php
+    if ($religion_1 == "methodist") {
         echo '<option selected="selected">Methodist</option>';
     } else {
         echo '<option >Methodist</option>';
-    } ?> 
+    }
+    ?> 
 
-                                    <?php if ($religion_1 == "other") {
-                                        echo '<option selected="selected">Other</option>';
-                                    } else {
-                                        echo '<option >Other</option>';
-                                    } ?> 
-    <?php if ($religion_1 == "primal_indigenous") {
-        echo '<option selected="selected">Primal-Indigenous</option>';
-    } else {
-        echo '<option >Primal-Indigenous</option>';
-    } ?> 
-    <?php if ($religion_1 == "unknown") {
-        echo '<option selected="selected">Unknown</option>';
-    } else {
-        echo '<option >Unknown</option>';
-    } ?> 
-    <?php if ($religion_1 == "quaker") {
-        echo '<option selected="selected">Quaker</option>';
-    } else {
-        echo '<option >Quaker</option>';
-    } ?> 
-    <?php if ($religion_1 == "shinto") {
-        echo '<option selected="selected">Shinto</option>';
-    } else {
-        echo '<option >Shinto</option>';
-    } ?> 
-    <?php if ($religion_1 == "sikh") {
-        echo '<option selected="selected">Sikh</option>';
-    } else {
-        echo '<option >Sikh</option>';
-    } ?> 
-    <?php if ($religion_1 == "unitarian") {
+                                                <?php
+                                                if ($religion_1 == "other") {
+                                                    echo '<option selected="selected">Other</option>';
+                                                } else {
+                                                    echo '<option >Other</option>';
+                                                }
+                                                ?> 
+                                                <?php
+                                                if ($religion_1 == "primal_indigenous") {
+                                                    echo '<option selected="selected">Primal-Indigenous</option>';
+                                                } else {
+                                                    echo '<option >Primal-Indigenous</option>';
+                                                }
+                                                ?> 
+                                                            <?php
+                                                            if ($religion_1 == "unknown") {
+                                                                echo '<option selected="selected">Unknown</option>';
+                                                            } else {
+                                                                echo '<option >Unknown</option>';
+                                                            }
+                                                            ?> 
+                                                            <?php
+                                                            if ($religion_1 == "quaker") {
+                                                                echo '<option selected="selected">Quaker</option>';
+                                                            } else {
+                                                                echo '<option >Quaker</option>';
+                                                            }
+                                                            ?> 
+                                                            <?php
+                                                            if ($religion_1 == "shinto") {
+                                                                echo '<option selected="selected">Shinto</option>';
+                                                            } else {
+                                                                echo '<option >Shinto</option>';
+                                                            }
+                                                            ?> 
+                                                            <?php
+                                                            if ($religion_1 == "sikh") {
+                                                                echo '<option selected="selected">Sikh</option>';
+                                                            } else {
+                                                                echo '<option >Sikh</option>';
+                                                            }
+                                                            ?> 
+    <?php
+    if ($religion_1 == "unitarian") {
         echo '<option selected="selected">Unitarian</option>';
     } else {
         echo '<option >Unitarian</option>';
-    } ?> 
+    }
+    ?> 
 
                                                             </optgroup>
                                                         </select>
 
-    <!--  <input type="text" class="form-control" id="religion" name="religion" placeholder="< echo $religion_1 ?>" disabled>-->
+        <!--  <input type="text" class="form-control" id="religion" name="religion" placeholder="< echo $religion_1 ?>" disabled>-->
                                                     </td>
                                                 </tr>
     <?php
@@ -584,31 +641,41 @@ if ($maxValue < 6000) {
                                                         <select class="form-control" id="civil_status" name="civil_status" placeholder="Select Civil Status" disabled>
                                                             <option value="never_married">Never Married</option>
 
-    <?php if ($civil_status_1 == "never_married") {
-        echo '<option selected="selected">Never Married</option>';
-    } else {
-        echo '<option >Never Married</option>';
-    } ?>
-    <?php if ($civil_status_1 == "married") {
+                                                            <?php
+                                                            if ($civil_status_1 == "never_married") {
+                                                                echo '<option selected="selected">Never Married</option>';
+                                                            } else {
+                                                                echo '<option >Never Married</option>';
+                                                            }
+                                                            ?>
+    <?php
+    if ($civil_status_1 == "married") {
         echo '<option selected="selected">Married</option>';
     } else {
         echo '<option >Married</option>';
-    } ?>
-    <?php if ($civil_status_1 == "widowed") {
+    }
+    ?>
+    <?php
+    if ($civil_status_1 == "widowed") {
         echo '<option selected="selected">Widowed</option>';
     } else {
         echo '<option >Widowed</option>';
-    } ?>
-    <?php if ($civil_status_1 == "divorced") {
+    }
+    ?>
+    <?php
+    if ($civil_status_1 == "divorced") {
         echo '<option selected="selected">Divorced</option>';
     } else {
         echo '<option >Divorced</option>';
-    } ?> 
-    <?php if ($civil_status_1 == "unknown") {
+    }
+    ?> 
+    <?php
+    if ($civil_status_1 == "unknown") {
         echo '<option selected="selected">Unknown</option>';
     } else {
         echo '<option >Unknown</option>';
-    } ?> 
+    }
+    ?> 
                                                         </select>
 
                                                     </td>

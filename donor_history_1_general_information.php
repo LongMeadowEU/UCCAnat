@@ -12,9 +12,9 @@ if(no_donor_selected() != true) {
 $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 
     	$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
-		$result = mysql_query("SELECT * FROM donor_table WHERE donor_reference_number = $selected_donor_ref_hist") or die($connect_error1);
+		$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number = $selected_donor_ref_hist") or die($connect_error1);
 					
-		while($record = mysql_fetch_assoc($result)) {
+		while($record = mysqli_fetch_assoc($result)) {
 				
 				$new_donorRefNum = $record['donor_reference_number'];
 				$new_first_name = ucwords($record['first_name']);
@@ -54,14 +54,14 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 						$date_of_donation = date('Y-m-d', strtotime($var_don_date));						
 
 						// update the correct row for the new patient info added on page 1 of the form with the new changes
-						mysql_query("UPDATE donor_table SET first_name = '$new_new_first_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");	
-						mysql_query("UPDATE donor_table SET sur_name = '$new_new_sur_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET sex = '$new_new_sex' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET first_name = '$new_new_first_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");	
+						mysqli_query($db_connect,"UPDATE donor_table SET sur_name = '$new_new_sur_name' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET sex = '$new_new_sex' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 						if($new_religion_1 !== "other") {
-							mysql_query("UPDATE donor_table SET religion = '$new_religion_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-							mysql_query("UPDATE donor_table SET other_religion = '' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET religion = '$new_religion_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET other_religion = '' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 						} else if($new_religion_1 == "other") {
-							mysql_query("UPDATE donor_table SET religion = '$new_religion_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+							mysqli_query($db_connect,"UPDATE donor_table SET religion = '$new_religion_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 							if(!empty($_POST['other_religion'])) {
 									
 								$other_religion_1 = $_POST['other_religion'];
@@ -69,10 +69,10 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 			   					mysql_query("UPDATE donor_table SET other_religion = '$other_religion_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 							}
 						}
-						mysql_query("UPDATE donor_table SET date_of_birth = '$newDate3' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET date_of_donation = '$date_of_donation' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET signature_present = '$signature_present_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET civil_status = '$new_civil_status' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET date_of_birth = '$newDate3' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET date_of_donation = '$date_of_donation' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET signature_present = '$signature_present_1' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET civil_status = '$new_civil_status' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 
 						header("Location: donor_history_1_general_information.php");
 			} 

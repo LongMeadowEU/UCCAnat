@@ -12,9 +12,9 @@ if(no_donor_selected() != true) {
 $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 
     	$connect_error1 = 'Sorry, we\'re experiencing some connection issues.';
-		$result = mysql_query("SELECT * FROM donor_table WHERE donor_reference_number = $selected_donor_ref_hist") or die($connect_error1);
+		$result = mysqli_query($db_connect,"SELECT * FROM donor_table WHERE donor_reference_number = $selected_donor_ref_hist") or die($connect_error1);
 					
-		while($record = mysql_fetch_assoc($result)) {
+		while($record = mysqli_fetch_assoc($result)) {
 				
 				$new_address_line_1 = $record['address_line_1'];
 				$new_address_line_2 = $record['address_line_2'];
@@ -41,13 +41,13 @@ $selected_donor_ref_hist = $_SESSION['selected_donor_ref_hist'];
 						$new_address_line_postcode_new = $_POST['address_line_postcode'];
 
 						// update the correct row for the new patient info added on page 1 of the form with the new changes
-						mysql_query("UPDATE donor_table SET address_line_1 = '$new_address_line_1_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");	
-						mysql_query("UPDATE donor_table SET address_line_2 = '$new_address_line_2_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET address_line_3 = '$new_address_line_3_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET address_line_4 = '$new_address_line_4_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET address_line_postcode = '$new_address_line_postcode_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET donor_phone_number = '$new_donor_phone_number_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
-						mysql_query("UPDATE donor_table SET donor_email_address = '$new_donor_email_address_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET address_line_1 = '$new_address_line_1_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");	
+						mysqli_query($db_connect,"UPDATE donor_table SET address_line_2 = '$new_address_line_2_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET address_line_3 = '$new_address_line_3_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET address_line_4 = '$new_address_line_4_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET address_line_postcode = '$new_address_line_postcode_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET donor_phone_number = '$new_donor_phone_number_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
+						mysqli_query($db_connect,"UPDATE donor_table SET donor_email_address = '$new_donor_email_address_new' WHERE donor_reference_number = '$selected_donor_ref_hist'");
 
 						header("Location: donor_history_2_contact_details.php");
 			} 

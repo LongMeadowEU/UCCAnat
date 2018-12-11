@@ -81,8 +81,8 @@ error_reporting(E_ERROR | E_PARSE);
 				
 				$searched_year = $_POST['report_year_search_box'];
 				
-				$result_year = mysql_query("SELECT * FROM  donor_table WHERE YEAR(date_of_death) LIKE '%$searched_year%' AND acceptance = 1") or die($connect_error1);
-				$result_year_num_rows = mysql_num_rows($result_year);
+				$result_year = mysqli_query($db_connect,"SELECT * FROM  donor_table WHERE YEAR(date_of_death) LIKE '%$searched_year%' AND acceptance = 1") or die($connect_error1);
+				$result_year_num_rows = mysqli_num_rows($result_year);
 
 			}
 		}
@@ -119,7 +119,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 	<h4>Donor Reports <?php echo $searched_year; ?> - <?php echo $result_year_num_rows; ?> Results Found <button onclick="new_report_search()" class="btn btn-primary pull-right" style="vertical-align: middle; padding: 1px; width: 150px">New Report Year <i class="glyphicon glyphicon-search"></i></button></h4>
                                   </div>
                                   <?php 
-										if(mysql_num_rows($result_year) > 0) {
+										if(mysqli_num_rows($result_year) > 0) {
 									?>
                                     <div class="panel panel-default">
 									<div class="panel-body">
