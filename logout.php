@@ -13,7 +13,7 @@
     <title>Log Out Page</title>
     
     <!-- calm breeze css for login page -->
-	<link href="css/style_calm_breeze_login" type="text/css" rel="stylesheet"/>
+	<link href="css/style_calm_breeze_login.cs" type="text/css" rel="stylesheet"/>
 	
 	<!-- For the Google Font -->
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300' rel='stylesheet' type='text/css'>

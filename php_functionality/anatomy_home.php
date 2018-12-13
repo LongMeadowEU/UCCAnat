@@ -1,6 +1,6 @@
 <?php
 
-	echo '
+echo '
  <nav>
  	<a id="main_homepage_link" class="navbar-brand" href="anatomy_homepage.php">UCC Anatomy</a>
  </nav>

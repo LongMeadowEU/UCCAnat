@@ -85,10 +85,10 @@ function mysqli_result($res,$row=0,$col=0){
 	function user_exists($cnx,$username) {
 		
 	//TODO MOK This is a double search in DB for existance and then repeated 
-            $findUser ="SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username'";
+            $findUser ="SELECT * FROM anatomy_login WHERE username = '$username'";
             $userResult = mysqli_query($cnx, $findUser) 
                 or die("Cannot Connect to DB - userExists");
-            return $userResult;
+            return mysqli_num_rows ( $userResult );
             // if user id = 0 then the user does not exist so no point going further to check the password against a non-existent username. So check. 
 	    // return (mysql_result(mysqli_query("SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$username'"), 0) == 1) ? true : false;
 	}
@@ -105,7 +105,41 @@ function mysqli_result($res,$row=0,$col=0){
 	function user_active($cnx,$username) {
 		
 		$usernameSan = sanitize($cnx,$username);
-                $userActive = "SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$usernameSan' AND active = 1";
+                $userActive = "SELECT * FROM anatomy_login WHERE username = '$usernameSan' AND active = 1";
+		$userActiveResult = mysqli_query($cnx, $userActive) 
+                        or die("Cannot Connect to DB - userActive");
+		return mysqli_num_rows ( $userActiveResult );
+	}
+        
+        function userHasDonerAccess($cnx,$username) {
+		
+		$usernameSan = sanitize($cnx,$username);
+                $userDonerAccess = "SELECT donorAccess FROM anatomy_login WHERE username = '$usernameSan' ";
+		$userDonerAccessResult = mysqli_query($cnx, $userDonerAccess) 
+                        or die("Cannot Connect to DB - userDonerAccess");
+		return $userDonerAccessResult;
+	}
+        
+         function userHasImportAccess($cnx,$username) {
+		
+		$usernameSan = sanitize($cnx,$username);
+                $userActive = "SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$usernameSan' AND importsAccess = 1";
+		$userActiveResult = mysqli_query($cnx, $userActive) 
+                        or die("Cannot Connect to DB - userActive");
+		return $userActiveResult;
+	}
+         function userHasProsectionAccess($cnx,$username) {
+		
+		$usernameSan = sanitize($cnx,$username);
+                $userActive = "SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$usernameSan' AND proSectionAccess = 1";
+		$userActiveResult = mysqli_query($cnx, $userActive) 
+                        or die("Cannot Connect to DB - userActive");
+		return $userActiveResult;
+	}
+         function userHasHistoricalAccess($cnx,$username) {
+		
+		$usernameSan = sanitize($cnx,$username);
+                $userActive = "SELECT COUNT(user_id) FROM anatomy_login WHERE username = '$usernameSan' AND historicalAccess = 1";
 		$userActiveResult = mysqli_query($cnx, $userActive) 
                         or die("Cannot Connect to DB - userActive");
 		return $userActiveResult;
